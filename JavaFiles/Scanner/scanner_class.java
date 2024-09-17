@@ -1,3 +1,5 @@
+package Scanner;
+
 import java.util.Scanner;
 
 // nextInt() =>to read int value from stdin

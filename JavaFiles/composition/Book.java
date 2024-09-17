@@ -1,8 +1,4 @@
 
-//package composition ;
-import java.io.*;
-import java.util.*;
-
 public class Book {
 
     // Member variables of this class
