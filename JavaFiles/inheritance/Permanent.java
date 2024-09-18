@@ -12,7 +12,8 @@ public class Permanent extends Employee {
         return 2 * salary;
     }
 
-    void display() {
+    void display() {// same method & same signature as in parent class==Method Overriding
+                    // same method but different signature from parent class==Method Overloading
         System.out.println("permananet emp credentials" + this.id + this.name);
     }
 }
