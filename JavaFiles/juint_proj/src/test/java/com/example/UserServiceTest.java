@@ -1,6 +1,8 @@
+package com.example;
+
 import org.powermock.api.mockito.PowerMockito;
-import com.example.UserDao;
-import com.example.UserService;
+// import com.example.UserDao;
+// import com.example.UserService;
 import junit.framework.TestCase;
 import org.junit.Test;
 

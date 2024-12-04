@@ -1,0 +1,116 @@
+
+
+    
+      <h2>User Form</h2>
+      <form [formGroup]="post_cus_form">
+        
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required formControlName="name">
+        
+        
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" placeholder="Enter your age" required formControlName="age">
+       
+        
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location" placeholder="Enter your location" required formControlName="location">
+          
+
+        <button type="submit" (click)="post_cus()">Add</button>
+      </form>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+
+      <h2>Get all customers</h2>
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.age }}</td>
+            <td>{{ customer.location }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+  <h2>Search Customer by ID</h2>
+  
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch(searchForm)">
+    <div class="form-group">
+      <label for="id">Customer ID:</label>
+      <input id="id" formControlName="id" class="form-control" type="number" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="cus_search" class="mt-3">
+    <h3>Customer Details:</h3>
+    <p><strong>Name:</strong> {{ cus_search.name }}</p>
+    <p><strong>Age:</strong> {{ cus_search.age }}</p>
+    <p><strong>Location:</strong> {{ cus_search.location }}</p>
+  </div>
+
+  <h2>Search and Update Customer Location</h2>
+  <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+    <div class="form-group">
+      <label for="id">Customer ID:</label>
+      <input id="id" formControlName="id"  class="form-control" type="number" />
+      <label for="location">New Location:</label>
+      <input id="location" formControlName="location" class="form-control" type="string"/>
+    </div>
+    
+    <button type="submit" class="btn btn-success" [disabled]="updateForm.invalid">Update Location</button>
+  </form>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="successMessage" class="alert alert-danger mt-3">
+    {{successMessage }}
+  </div>
+
+
+  <h2>delete by id</h2>
+  <form [formGroup]="deleteForm" (ngSubmit)="onDelete()">
+    <label for="id">Customer ID:</label>
+    <input id="id" formControlName="id" type="number" required />
+    <button type="submit">Delete</button>
+</form>
+<div *ngIf="del_err" >
+    {{ del_err}}
+</div>
+<div *ngIf="del_suc" >
+    {{ del_suc }}
+</div>
+
+
+<form [formGroup]="adminDeleteForm" (ngSubmit)="onAdminDelete()">
+  <label for="adminId">Admin ID:</label>
+  <input id="adminId" formControlName="adminId" type="number" required />
+
+  <label for="customerId">Customer ID:</label>
+  <input id="customerId" formControlName="customerId" type="number" required />
+
+  <button type="submit">Delete Customer</button>
+</form>
+
+<div *ngIf="adminDelErr" class="error">{{ adminDelErr }}</div>
+<div *ngIf="adminDelSuc" class="success">{{ adminDelSuc }}</div>
