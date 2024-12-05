@@ -1,22 +1,31 @@
 
-
-    
+<!-- for reactive forms-->
+ 
       <h2>User Form</h2>
       <form [formGroup]="post_cus_form">
         
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" placeholder="Enter your name" required formControlName="name">
-        
+          <div *ngIf="post_cus_form.get('name')?.touched && post_cus_form.get('name')?.invalid">
+            <small class="error" *ngIf="post_cus_form.get('name')?.hasError('required')">
+              Name is required.
+            </small>
+            <small class="error" *ngIf="post_cus_form.get('name')?.hasError('pattern')">
+              Name can only contain letters and spaces.
+            </small>
+          </div>
         
           <label for="age">Age:</label>
           <input type="number" id="age" name="age" placeholder="Enter your age" required formControlName="age">
-       
-        
+          <div *ngIf="post_cus_form.get('age')?.touched && post_cus_form.get('age')?.invalid">
+            <small class="error">Age is required.</small>
+            </div>
+            
           <label for="location">Location:</label>
           <input type="text" id="location" name="location" placeholder="Enter your location" required formControlName="location">
           
 
-        <button type="submit" (click)="post_cus()">Add</button>
+        <button type="submit" (click)="post_cus()" [disabled]="post_cus_form.invalid">Add</button>
       </form>
       <div *ngIf="successMessage" class="success-message">
         {{ successMessage }}
@@ -101,7 +110,7 @@
     {{ del_suc }}
 </div>
 
-
+<h2>delete customer by admin</h2>
 <form [formGroup]="adminDeleteForm" (ngSubmit)="onAdminDelete()">
   <label for="adminId">Admin ID:</label>
   <input id="adminId" formControlName="adminId" type="number" required />
@@ -114,3 +123,109 @@
 
 <div *ngIf="adminDelErr" class="error">{{ adminDelErr }}</div>
 <div *ngIf="adminDelSuc" class="success">{{ adminDelSuc }}</div>
+
+<h2>router navigation</h2>
+<a [routerLink]="['/main']" routerLinkActive="active">Main</a>
+<button (click)="goToMain()">Go to MainComponent</button>
+
+<!--template-driven form-->
+<!--
+<h2>User Form</h2>
+<form (ngSubmit)="post_cus()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" [(ngModel)]="customerForm.name" name="name" required />
+   <div *ngIf="name.touched && name.invalid">
+      <small class="error" *ngIf="name.errors?.['required']">Name is required.</small>
+    </div>
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" [(ngModel)]="customerForm.age" name="age" required />
+
+  <label for="location">Location:</label>
+  <input type="text" id="location" [(ngModel)]="customerForm.location" name="location" required />
+
+  <button type="submit"  [disabled]="post_cus_form.invalid">Add</button>
+</form>
+
+<div *ngIf="successMessage">{{ successMessage }}</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<h2>Get all customers</h2>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.id }}</td>
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.age }}</td>
+      <td>{{ customer.location }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Search Customer by ID</h2>
+<form (ngSubmit)="onSearch()">
+  <label for="searchId">Customer ID:</label>
+  <input id="searchId" [(ngModel)]="searchId" name="searchId" type="number" required />
+
+  <button type="submit">Search</button>
+</form>
+
+<div *ngIf="cus_search">
+  <p><strong>Name:</strong> {{ cus_search.name }}</p>
+  <p><strong>Age:</strong> {{ cus_search.age }}</p>
+  <p><strong>Location:</strong> {{ cus_search.location }}</p>
+</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<h2>Search and Update Customer Location</h2>
+<form (ngSubmit)="onUpdate()">
+  <label for="updateId">Customer ID:</label>
+  <input id="updateId" [(ngModel)]="updateData.id" name="updateId" type="number" required />
+
+  <label for="newLocation">New Location:</label>
+  <input id="newLocation" [(ngModel)]="updateData.location" name="newLocation" type="text" required />
+
+  <button type="submit">Update Location</button>
+</form>
+<div *ngIf="errorMessage" class="alert alert-danger mt-3">
+  {{ errorMessage }}
+</div>
+<div *ngIf="successMessage" class="alert alert-danger mt-3">
+  {{successMessage }}
+</div>
+
+<h2>Delete by ID</h2>
+<form (ngSubmit)="onDelete()">
+  <label for="deleteId">Customer ID:</label>
+  <input id="deleteId" [(ngModel)]="deleteId" name="deleteId" type="number" required />
+
+  <button type="submit">Delete</button>
+</form>
+<div *ngIf="del_err" >
+  {{ del_err}}
+</div>
+<div *ngIf="del_suc" >
+  {{ del_suc }}
+</div>
+
+<h2>Delete Customer by Admin</h2>
+<form (ngSubmit)="onAdminDelete()">
+  <label for="adminId">Admin ID:</label>
+  <input id="adminId" [(ngModel)]="adminDeleteData.adminId" name="adminId" type="number" required />
+
+  <label for="customerId">Customer ID:</label>
+  <input id="customerId" [(ngModel)]="adminDeleteData.customerId" name="customerId" type="number" required />
+
+  <button type="submit">Delete Customer</button>
+</form>
+<div *ngIf="adminDelErr" class="error">{{ adminDelErr }}</div>
+<div *ngIf="adminDelSuc" class="success">{{ adminDelSuc }}</div>
+-->

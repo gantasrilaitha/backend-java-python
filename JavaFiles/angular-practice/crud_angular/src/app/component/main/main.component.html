@@ -1,1 +1,7 @@
 <p>main works!</p>
+<h2>delete customer by admin</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="name">NAME:</label>
+  <input id="name" formControlName="name" type="text" required />
+  <button type="submit">SUBMIT</button>
+</form>
