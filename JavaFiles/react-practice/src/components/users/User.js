@@ -11,7 +11,7 @@ const User = () => {
   const { login } = useParams();
 
   useEffect(() => {//mimics componentDidMount & tracks for any changes
-  
+    
     getUser(login) // Call getUser with the login parameter
    
   }, [login]);//[]:no looping
