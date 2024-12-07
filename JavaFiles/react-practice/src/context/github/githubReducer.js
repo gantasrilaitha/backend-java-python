@@ -6,11 +6,11 @@ import {
     
   } from '../types';
   
-  export default (state, action) => {
+const GithubReducer=(state, action) => {
     switch (action.type) {
       case SEARCH_USERS:
-        return {
-          ...state,
+        return {//return the state with updatoins back to provider
+          ...state,//copy of state
           users: action.payload,
           loading: false
         };
@@ -36,3 +36,5 @@ import {
         return state;
     }
   };
+
+  export default GithubReducer;

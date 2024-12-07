@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component , useContext } from 'react';
 import UserItem from './UserItem';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-const Users = ({users,loading}) =>  {
+import GithubContext from '../../context/github/GithubContext';
+const Users = () =>  {
+
+  const githubContext = useContext(GithubContext);
+
+  const { loading, users } = githubContext;
     // state={
     //     users:[
     //         {

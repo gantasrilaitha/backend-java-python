@@ -1,23 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
+import GithubContext from '../../context/github/GithubContext';
+const User = () => {
 
-const User = ({ getUser, user, loading }) => {
+  const githubContext = useContext(GithubContext);
+
+  const { getUser, loading, user } = githubContext;
   const { login } = useParams();
 
   useEffect(() => {//mimics componentDidMount & tracks for any changes
-    getUser(login);
+  
+    getUser(login) // Call getUser with the login parameter
    
-  }, [login]);
+  }, [login]);//[]:no looping
 
   const {
     name,
     company,
+  
     avatar_url,
     location,
     bio,
     blog,
+    
     html_url,
     followers,
     following,

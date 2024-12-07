@@ -1,9 +1,9 @@
 import React, { Component ,useState,useContext} from 'react';
-//import githubContext from '../../context/github/githubContext';
+import GithubContext from '../../context/github/GithubContext';
 //import alertContext from '../../context/alert/alertContext';
 import PropTypes from 'prop-types';
-const Search = ({ searchUsers ,clearUsers,showClear}) => {
-    // const githubContext = useContext(githubContext);
+const Search = () => {
+    const githubContext = useContext(GithubContext);
     // const alertContext = useContext(alertContext);
     const [text, setText] = useState('');
     const [alert, setAlert] = useState('');
@@ -15,7 +15,7 @@ const Search = ({ searchUsers ,clearUsers,showClear}) => {
             console.log(alert);
           }
         else{
-            searchUsers(text.trim());
+          githubContext.searchUsers(text.trim());
             setText('');
             setAlert(''); // Clear the alert
         }
@@ -37,10 +37,10 @@ const Search = ({ searchUsers ,clearUsers,showClear}) => {
                 className='btn btn-dark btn-block'
                 />
             </form>
-            {showClear &&(
+            {githubContext.users.length > 0 &&(
             <button
                 className='btn btn-light btn-block'
-                onClick={clearUsers}>
+                onClick={githubContext.clearUsers}>
                 Clear
             </button>)}
         </div>
