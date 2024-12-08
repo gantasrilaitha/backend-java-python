@@ -12,6 +12,10 @@ import About from './components/pages/About';
 
 import GithubState from './context/github/GithubState';
 
+import GroupListComponent from './components/group_services/GroupListComponent';
+import AddGroupComponent from './components/group_services/AddGroupComponent';
+import UpdateGroupComponent from './components/group_services/UpdateGroupComponent';
+
 
 class App extends Component {
   
@@ -76,6 +80,13 @@ class App extends Component {
       />} />
        {/* <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={this.state.users.length>0?true:false}/>
       <Users  loading={this.state.loading} users={this.state.users}/>  */}
+
+
+      {/* Routes for Group */}
+          <Route path="/groups" element={<GroupListComponent />} />
+          <Route path="/add-group" element={<AddGroupComponent />} />
+          <Route path="/update-group/:id" element={<UpdateGroupComponent />} />
+
       </Routes>
     </div>
     </BrowserRouter>
