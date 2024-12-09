@@ -3,7 +3,7 @@ package IO;
 import java.io.*;
 
 public class DataStreamDemo {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException { // IOException: Input/Output operation fails or is interrupted. 
         FileReader reader = new FileReader("D:/BACKEND-JAVA_PYTHON/backend-java-python/JavaFiles/IO/file2.txt");
         int n;
         while ((n = reader.read()) != -1) {// -1 indicates EOF
