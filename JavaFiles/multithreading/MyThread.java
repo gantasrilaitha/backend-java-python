@@ -12,8 +12,9 @@ package multithreading;
 //5.String getName(): get name of the thread
 //6.void setPriority(int): set the priority of thread
 //7.int getPriority():get priority of the thread
-//8.void sleep(long) : sleep duration 
+//8.void sleep(long) : sleep duration of thread, thread will not execute anything but waits & remains in queue
 //9.String toString(): to get string format of a object
+//10. yield() : tell schedular to schdule another thread
 
 //Ways to stop a running thread
 //1. terminate run() method
