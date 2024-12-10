@@ -1,7 +1,7 @@
 package multithreading;
 
 //create threads
-//1. by creating a class which extends Thread Class
+//1. by creating a class which extends Thread Class->NOT RECOMENDED (the subclass running a thread cant inherit from main Thread class which is aldredy running another task/thread)
 //2. by creating a class which implments Runnable Interface
 
 //Thread Class Methods
