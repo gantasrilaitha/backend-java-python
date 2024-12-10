@@ -15,6 +15,11 @@ package multithreading;
 //8.void sleep(long) : sleep duration 
 //9.String toString(): to get string format of a object
 
+//Ways to stop a running thread
+//1. terminate run() method
+//2. have boolean variable deciding on continuation of thread
+//3. set() method that can be invoked by other thread
+
 public class MyThread extends Thread {// Thraed belongs to java.lang package
     // Thread is a concrete class(class that is fully implemented)
     Table t;
