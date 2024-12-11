@@ -68,7 +68,7 @@ export class HomeComponent {
   }),
     this.fetchCustomers();
   }
-
+  
   post_cus() {
     this.errorMessage = null; // Reset error message
     this.cusService.create_Customer(this.post_cus_form.value).subscribe(
