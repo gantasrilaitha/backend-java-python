@@ -1,3 +1,12 @@
+## **How to create NON-STANDALONE PROJECT & COMPONENT**
+- ng new your-project-name --no-standalone =>to create non_standalone project
+- ng generate component your-component-name --no-standalone =>to create non_standalone components
+- ng generate service service-name =>to crete services under ``/service``
+- ng g class class-name =>to create class
+
+
+
+
 # NoStandalonePractice
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.2.
