@@ -18,6 +18,10 @@ export class CustomerService {
   get_Customers(): Observable<any> {
     return this.http.get(baseUrl+"allcus");
   }
+  
+  get_Customers_Sorted_By_Name(): Observable<any> {
+    return this.http.get(baseUrl+"sorted_by_name");
+  }
 
   getCustomerById(id: number): Observable<any> {
     return this.http.get<any>(`${baseUrl}${id}`);

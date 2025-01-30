@@ -67,6 +67,7 @@ export class HomeComponent {
     customerId: [null, Validators.required],
   }),
     this.fetchCustomers();
+    this.fetchCustomersSortedByName();
   }
   
   post_cus() {
@@ -88,6 +89,15 @@ export class HomeComponent {
 
   fetchCustomers(): void {
     this.cusService.get_Customers().subscribe(
+      (data:Customer[]) => {
+        this.customers = data;
+        console.log(data);
+      }
+    );
+  }
+
+  fetchCustomersSortedByName(): void {
+    this.cusService.get_Customers_Sorted_By_Name().subscribe(
       (data:Customer[]) => {
         this.customers = data;
         console.log(data);

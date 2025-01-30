@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.angular_java_practice.fsd.entity.Admin;
 import com.example.angular_java_practice.fsd.entity.Customer;
+import com.example.angular_java_practice.fsd.exception.CustomerNotFoundException;
 import com.example.angular_java_practice.fsd.exception.InvalidAgeException;
 import com.example.angular_java_practice.fsd.services.AdminService;
 import com.example.angular_java_practice.fsd.services.CustomerService;
@@ -66,27 +67,27 @@ public class CustomerController {
     }
 
     @PutMapping("/update/{id}/{location}")
-    public ResponseEntity<Customer> updateCustomerLocation(@PathVariable Integer id, @PathVariable String location) {
-        Optional<Customer> existingCustomer = cs.get_customer_by_id(id);
-        
-        if (existingCustomer.isPresent()) {
-            Customer customerToUpdate = existingCustomer.get();
-            customerToUpdate.setLocation(location); // update location
-            cs.create_customer(customerToUpdate);
-            return ResponseEntity.ok(customerToUpdate);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    public ResponseEntity<?> updateCustomerLocation(@PathVariable Integer id, @PathVariable String location) {
+        try{
+            Optional<Customer> existingCustomer = cs.update_customer(id,location);
+            return ResponseEntity.ok(existingCustomer);
+
+        }catch (CustomerNotFoundException e) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error",  e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse); 
         }
+            
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete_CustomerBy_Id(@PathVariable Integer id) {
-        Optional<Customer> customer = cs.get_customer_by_id(id);
+        Optional<Customer> customer = cs.deleteCustomerById(id);
         if (customer.isPresent()) {
-            cs.deleteCustomerById(id);
             Map<String, String> response = new HashMap<>();
             response.put("suc_msg",  "deleted suceessfully");
             return ResponseEntity.ok(response);
+            
         } else {
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", "not in db" );
@@ -106,9 +107,9 @@ public class CustomerController {
         ) {
         Optional<Admin> admin = as.getAdminById(adminId);
         if (admin.isPresent()) {
-            Optional<Customer> customer = cs.get_customer_by_id(customerId);
+            Optional<Customer> customer = as.admin_delete_customer(adminId, customerId);
             if (customer.isPresent()) {
-                cs.deleteCustomerById(customerId);
+          
                 return ResponseEntity.ok("Customer deleted successfully by admin.");
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
@@ -116,6 +117,11 @@ public class CustomerController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: Admin not found.");
         }
+    }
+
+    @GetMapping("/sorted_by_name")
+    public List<Customer> get_cus_sorted_by_name(){
+        return cs.get_all_cus_sorted_by_name();
     }
 
 }

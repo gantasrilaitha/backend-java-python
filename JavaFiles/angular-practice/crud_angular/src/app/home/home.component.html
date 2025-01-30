@@ -128,6 +128,23 @@
 <a [routerLink]="['/main']" routerLinkActive="active">Main</a>
 <button (click)="goToMain()">Go to MainComponent</button>
 
+
+<h2>Get all customers Sorted By Name</h2>
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+
 <!--template-driven form-->
 <!--
 <h2>User Form</h2>
