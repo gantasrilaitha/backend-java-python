@@ -43,5 +43,31 @@ class Program
             Thread.Sleep(2000);
         }
         Console.WriteLine(input.Contains("j"));
+
+        //ARRAYS-fixed size,staic,homogeneous elemens
+        int[] nums = [11, 22, 13];// int[] nums = new int[3];
+        Array.Reverse(nums);//[13,22,11]
+        Array.Sort(nums);// [11,13,22]
+        foreach (int num in nums)
+        {
+            Console.WriteLine(num);
+        }
+        int pos = Array.IndexOf(nums, 12, 2);//find element 12 in array nums starting from index 2
+        Console.WriteLine(pos);
+
+        //LISTS-no fixed size,dynamic,heterogenous elements
+        List <int> lst= new List<int>();
+        lst.Add(34);
+        lst.Add(12);
+        for (int i =0;i< lst.Count;i++)
+        {
+            Console.WriteLine(lst[i]);
+        }
+        
+
+        //DICTIONARY
+
+
     }
+
 }
