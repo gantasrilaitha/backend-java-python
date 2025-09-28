@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sparkcodes.RDDJoinsTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.376 s - in com.sparkcodes.RDDJoinsTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.831 s - in com.sparkcodes.RDDJoinsTest
