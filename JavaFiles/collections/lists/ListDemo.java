@@ -35,6 +35,24 @@ public class ListDemo {
         for (Object oo : al) {
             System.out.println(oo);
         }
+
+        // array function
+        int arr[] = { 1, 20, 3 };
+        int ab[] = { 1, 2, 3, 4 };
+
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
+        // Convert to Integer[]
+        Integer[] boxed = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        Arrays.sort(boxed, Collections.reverseOrder());
+        System.out.println(Arrays.toString(boxed));
+        System.out.println(Arrays.binarySearch(arr, 3));
+        System.out.println(Arrays.binarySearch(arr, 5));
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(Arrays.copyOfRange(arr, 0, 1)));
+        System.out.println(Arrays.toString(Arrays.copyOf(arr, 5)));
+        System.out.println(Arrays.equals(arr, ab));
+
     }
 
 }
