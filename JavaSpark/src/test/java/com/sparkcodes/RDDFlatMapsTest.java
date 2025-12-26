@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,5 +34,17 @@ public class RDDFlatMapsTest {
             flatMapped_words.take(15).forEach(System.out::println);
             System.out.println("--------------------");
         }
+    }
+
+    @Test
+    @DisplayName("Test flatMap()trial -lumen")
+    void testFlatMaptrial() {
+
+        List<String> stringList = List.of(" Hello World ", " World green blue", "i am happy");
+        final var flatMapped_words =  stringList.stream()
+                .flatMap(x -> Arrays.stream(x.trim().split("\\s+")))  // ✅ use Arrays.stream
+                .toList();
+        //[Hello, World, World, green, blue, i, am, happy]
+        System.out.println(flatMapped_words);
     }
 }
