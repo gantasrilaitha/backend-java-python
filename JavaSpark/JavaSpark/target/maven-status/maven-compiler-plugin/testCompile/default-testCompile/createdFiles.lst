@@ -1,9 +1,0 @@
-com\sparkcodes\PairRDDsTest.class
-com\sparkcodes\RDDReduceTest.class
-com\sparkcodes\RDDFlatMapsTest.class
-com\sparkcodes\RDDMappingTest.class
-com\sparkcodes\RDDFiltersTest.class
-com\sparkcodes\RDDJoinsTest.class
-com\sparkcodes\CreateRDDUsingParallelizeTest.class
-com\sparkcodes\RDDExternalDatasetsTest.class
-com\sparkcodes\RDDTuplesTest.class
