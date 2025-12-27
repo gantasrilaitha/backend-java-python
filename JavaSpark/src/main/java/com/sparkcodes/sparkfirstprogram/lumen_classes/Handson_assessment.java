@@ -7,7 +7,7 @@ import org.apache.spark.sql.SparkSession;
 
 import static org.apache.spark.sql.functions.*;
 
-//unext handson
+
 //unext codes
 public class Handson_assessment {
     public static void main(String[] args) {
