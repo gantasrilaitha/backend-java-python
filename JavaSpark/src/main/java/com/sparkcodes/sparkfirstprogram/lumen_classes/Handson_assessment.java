@@ -7,8 +7,6 @@ import org.apache.spark.sql.SparkSession;
 
 import static org.apache.spark.sql.functions.*;
 
-
-//unext codes
 public class Handson_assessment {
     public static void main(String[] args) {
 
@@ -46,7 +44,9 @@ public class Handson_assessment {
         System.out.println("=== SCHEMA OF SALES CSV ===");
         sales_df.printSchema();
 
+
         //1. That contains the aggregate (sum) Profit and Quantity, based on Year, Month, Category, Sub Category.
+
         Dataset<Row> cleanedSales = sales_df
                 .withColumn(
                         "OrderDate",
@@ -68,18 +68,13 @@ public class Handson_assessment {
                 cleanedSales.col("Order ID").equalTo(returns_df.col("Order ID")),
                 "left"
         );
-        Dataset<Row> report = joined
-                .groupBy(
-                        col("Year"),
-                        col("Month"),
-                        col("Category"),
-                        col("Sub-Category")
-                )
-                .agg(
-                        sum("Quantity").alias("Total_Quantity_Sold"),
-                        sum("Profit").alias("Total_Profit")
-                )
-                .orderBy("Year", "Month", "Category", "Sub-Category");
+
+        //do group-by aggregation
+        Dataset<Row> report = doAggregation(joined);
+
+        //update profit for furniture
+        report = updateProfitForFurniture(report);
+
         System.out.println("=== REPORT ===");
         report.show(false);
 
@@ -93,7 +88,7 @@ public class Handson_assessment {
                 .save("output/sales_report/");
 
         //3.For the total profit and total quantity calculations the returns data should be used to exclude all returns
-        Dataset<Row>returnsDf = returns_df
+        Dataset<Row> returnsDf = returns_df
                 .select(col("Order ID"))
                 .withColumnRenamed("Order ID", "Returned_Order_ID");
         Dataset<Row> validSales = cleanedSales // this is your cleaned + date parsed + numeric cleaned DF
@@ -115,5 +110,29 @@ public class Handson_assessment {
                 .parquet("output/sales_report/");
 
 
+    }
+
+    public static Dataset<Row> doAggregation(Dataset<Row> joined_data) {
+        Dataset<Row> report = joined_data
+                .groupBy(
+                        col("Year"),
+                        col("Month"),
+                        col("Category"),
+                        col("Sub-Category")
+                )
+                .agg(
+                        sum("Quantity").alias("Total_Quantity_Sold"),
+                        sum("Profit").alias("Total_Profit")
+                )
+                .orderBy("Year", "Month", "Category", "Sub-Category");
+        return  report;
+    }
+
+    public static Dataset<Row> updateProfitForFurniture(Dataset<Row> joined_data) {
+        Dataset<Row> updatedData = joined_data
+                .withColumn("Total_Profit",
+                    when(col("Category").equalTo("Furniture"), col("Total_Profit").multiply(2)
+                    ).otherwise(col("Total_Profit")));
+        return updatedData;
     }
 }

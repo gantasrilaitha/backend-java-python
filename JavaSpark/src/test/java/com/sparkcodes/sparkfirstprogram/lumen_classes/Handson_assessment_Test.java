@@ -1,14 +1,18 @@
 package com.sparkcodes.sparkfirstprogram.lumen_classes;
 
 import org.apache.spark.sql.*;
-import org.apache.spark.sql.types.*;
-import org.junit.jupiter.api.*;
+import org.apache.spark.sql.types.StructType;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.apache.spark.sql.functions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static com.sparkcodes.sparkfirstprogram.lumen_classes.Handson_assessment;
 
 public class Handson_assessment_Test {
 
@@ -68,6 +72,13 @@ public class Handson_assessment_Test {
                 salesDf.col("Order ID").equalTo(returnsDf.col("Returned_Order_ID")),
                 "left_anti"
         );
+
+        Dataset<Row> result =
+                Handson_assessment.doAggregation(validSales);
+        result.show();
+        Dataset<Row> updatedResult =
+                Handson_assessment.updateProfitForFurniture(result);
+        updatedResult.show();
 
         // ---------- ASSERTIONS ----------
         // Only A1 and A2 must remain
