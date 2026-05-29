@@ -1,0 +1,21 @@
+Useful
+Resources:
+https:/ /learn.microsoft.com/en-us/assessments/
+https://azurecharts.com
+https://www.youtube.com/@MicrosoftReactor/videos
+https://www.voutube.com/@AzureDeveloperCommunity/videos
+
+Case Study:
+https://aztrqstr.blob.core.windows.net/case-studv/Buildinq_MicroserviceArchitecture.pdf
+https://aztrgstr.blob.core.windows.net/case-study/Building_Microservice_Architecture.pdf
+
+AZ 204 session PPT:
+https://aztrastr.blob.core.windows.net/socaen/May_4th_26/AZ_204.pptx
+
+EmpInfor App:
+https://aztrgstr.blob.core.windows.net/socgen/May 4th 26/EmpInformation.pptx
+https://aztrgstr.blob.core.windows.net/socgen/May_4th_26/Dot_Net.zip
+https://aztrgstr.blob.core.windows.net/socgen/May_4th_26/Java.zip
+
+Labs Exercise using Java:
+https://aztrgstr.blob.core.windows.net/socgen/May_4th_26/Azure_java_examples.docx
