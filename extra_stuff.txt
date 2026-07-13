@@ -1,4 +1,4 @@
-Phholon ka Taaron ka Song: https://youtu.be/2QoHFybo0Cg?si=_tBacTys1cSjz7a0
+Marketing teams invest significant time in planning campaigns, creating creatives, deciding budgets, and analyzing competitors. Prarochana AI automates these activities using Generative AI, enabling faster, smarter, and data-driven campaign creation.
 
 b. Key Features / Components
 AI-Powered Campaign Generation
@@ -14,3 +14,5 @@ RAG for budget prediction
 Pinecone & MongoDB Vector Search
 Streamlit-based interactive application
 Custom "AdBits" dataset for Indian beverage advertisements
+
+
