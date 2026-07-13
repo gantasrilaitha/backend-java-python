@@ -1,1 +1,16 @@
 Phholon ka Taaron ka Song: https://youtu.be/2QoHFybo0Cg?si=_tBacTys1cSjz7a0
+
+b. Key Features / Components
+AI-Powered Campaign Generation
+Automated ad caption generation using GPT-based models
+AI-generated advertisement creatives using text-to-image models
+Intelligent campaign budget estimation using RAG
+Competitor-aware campaign recommendations
+End-to-end campaign generation pipeline
+Technical Components
+Fine-tuned GPT2 & Gemini models
+DALL·E/BingArt for image generation
+RAG for budget prediction
+Pinecone & MongoDB Vector Search
+Streamlit-based interactive application
+Custom "AdBits" dataset for Indian beverage advertisements
